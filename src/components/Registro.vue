@@ -5,15 +5,11 @@
       <input v-model="email" placeholder="Correo electrónico" />
       <input v-model="password" type="password" placeholder="Contraseña" />
       <button @click="register">Registrar</button>
-  
-      <!-- Componente hijo -->
-      <ChildComponent :userData="newUser" />
     </div>
   </template>
   
   <script setup>
   
-  import ChildComponent from './Login.vue';
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
 
@@ -28,9 +24,11 @@
     password: password.value,
   };
   
-  const register = () => {
-    alert(`Usuario registrado:\nNombre: ${newUser.name}\nCorreo electrónico: ${newUser.email}`);
-    router.push('/login');
-  };
+ // registro.vue
+const register = () => {
+  alert(`Usuario registrado:\nNombre: ${newUser.name}\nCorreo electrónico: ${newUser.email}`);
+  router.push({ name: 'login', props: { userData: newUser } });
+};
+
   </script>
   
